@@ -1,3 +1,4 @@
+import org.junit.Before;
 import org.junit.Ignore;
 import org.junit.Test;
 
@@ -12,6 +13,18 @@ import static junit.framework.TestCase.*;
  */
 public class KataPotterTest {
 
+    private BasketPriceEstimator basketPriceEstimator;
+
+    @Before
+    public void setup()
+    {
+        this.basketPriceEstimator = new BasketPriceEstimator();
+    }
+
+    private void assertBasketCost(double expectedCost, String ... titles) {
+        assertEquals(expectedCost, this.basketPriceEstimator.estimate(titles));
+    }
+
     @Test
     public void basket_without_books__should_cost_zero() {
         assertBasketCost(0.0);
@@ -22,10 +35,6 @@ public class KataPotterTest {
         assertBasketCost(8.0, "Philosophers Stone");
         assertBasketCost(8.0, "Chamber of Secrets");
         assertBasketCost(8.0, "Prisoner of Azkaban");
-    }
-
-    private void assertBasketCost(double expectedCost, String ... titles) {
-        assertEquals(expectedCost, basketCost(titles));
     }
 
     @Test
@@ -102,22 +111,4 @@ public class KataPotterTest {
         );
     }
 
-    private double basketCost(String[] titles) {
-
-        HashMap<Integer, Double> discountsMap = new HashMap<>();
-        discountsMap.put(2, 0.05);
-        discountsMap.put(3, 0.10);
-        discountsMap.put(4, 0.20);
-        discountsMap.put(5, 0.25);
-
-        int titlesVariety = new HashSet<>(Arrays.asList(titles)).size();
-        if(titlesVariety > 1 && titlesVariety == titles.length) {
-            double discountQuote = discountsMap.get(titlesVariety);
-            double basePrice = (8 * titles.length);
-            return basePrice * (1 - discountQuote);
-        }
-
-        return titles.length * 8;
-
-    }
 }
