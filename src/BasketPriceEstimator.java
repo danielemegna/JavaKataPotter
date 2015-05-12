@@ -15,17 +15,15 @@ public class BasketPriceEstimator {
         put(5,0.25);
     }};
 
-    public double estimate(String[] titles) {
-        if(titles.length == 0)
+    public double estimate(BookBasket basket) {
+        if(basket.getBookCount() == 0)
             return 0;
 
-        double basePrice = (8 * titles.length);
-        int titlesVariety = new HashSet<>(Arrays.asList(titles)).size();
-
-        if(titlesVariety != titles.length)
+        double basePrice = (8 * basket.getBookCount());
+        if(basket.getTitlesVariety() != basket.getBookCount())
             return basePrice;
 
-        double discountQuote = this.discountsMap.get(titlesVariety);
+        double discountQuote = this.discountsMap.get(basket.getTitlesVariety());
         return basePrice * (1 - discountQuote);
     }
 

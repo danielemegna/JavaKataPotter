@@ -22,7 +22,8 @@ public class KataPotterTest {
     }
 
     private void assertBasketCost(double expectedCost, String ... titles) {
-        assertEquals(expectedCost, this.basketPriceEstimator.estimate(titles));
+        BookBasket basket = new BookBasket(titles);
+        assertEquals(expectedCost, this.basketPriceEstimator.estimate(basket));
     }
 
     @Test
