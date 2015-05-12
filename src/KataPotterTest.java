@@ -2,10 +2,6 @@ import org.junit.Before;
 import org.junit.Ignore;
 import org.junit.Test;
 
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.HashSet;
-
 import static junit.framework.TestCase.*;
 
 /**
@@ -23,7 +19,8 @@ public class KataPotterTest {
 
     private void assertBasketCost(double expectedCost, String ... titles) {
         BookBasket basket = new BookBasket(titles);
-        assertEquals(expectedCost, this.basketPriceEstimator.estimate(basket));
+        double estimate = this.basketPriceEstimator.estimate(basket);
+        assertEquals(expectedCost, estimate);
     }
 
     @Test
@@ -52,8 +49,8 @@ public class KataPotterTest {
         );
 
         assertBasketCost(8 * 2,
-                "Prisoner of Azkaban",
-                "Prisoner of Azkaban"
+            "Prisoner of Azkaban",
+            "Prisoner of Azkaban"
         );
     }
 
