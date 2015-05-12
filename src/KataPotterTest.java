@@ -23,9 +23,28 @@ public class KataPotterTest {
         assertEquals(expectedCost, basketCost(titles));
     }
 
+    @Test
+    public void multiple_copies_of_same_title__has_no_discount() {
+        assertBasketCost(16.0,
+            "Philosophers Stone",
+            "Philosophers Stone"
+        );
+
+        assertBasketCost(24.0,
+            "Chamber of Secrets",
+            "Chamber of Secrets",
+            "Chamber of Secrets"
+        );
+
+        assertBasketCost(16.0,
+            "Prisoner of Azkaban",
+            "Prisoner of Azkaban"
+        );
+    }
+
     private double basketCost(String[] titles) {
         if(titles.length > 0)
-            return 8;
+            return (8 * titles.length);
 
         return 0;
     }
