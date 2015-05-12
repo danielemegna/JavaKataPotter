@@ -56,9 +56,6 @@ public class KataPotterTest {
     }
 
     private double basketCost(String[] titles) {
-        if(titles.length > 0)
-            return (8 * titles.length);
-
-        return 0;
+        return (8 * titles.length);
     }
 }
