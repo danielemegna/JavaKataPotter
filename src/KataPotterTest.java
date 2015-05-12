@@ -2,6 +2,7 @@ import org.junit.Ignore;
 import org.junit.Test;
 
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.HashSet;
 
 import static junit.framework.TestCase.*;
@@ -79,6 +80,17 @@ public class KataPotterTest {
     }
 
     @Test
+    public void five_different_titles__has_twentyfive_percent_discount() {
+        assertBasketCost(((8*5) * 0.75),
+            "Philosophers Stone",
+            "Prisoner of Azkaban",
+            "Chamber of Secrets",
+            "Order of the Phoenix",
+            "The Goblet of Fire"
+        );
+    }
+
+    @Test
     @Ignore
     public void final_acceptance_test() {
         assertBasketCost(51.20,
@@ -92,11 +104,17 @@ public class KataPotterTest {
 
     private double basketCost(String[] titles) {
 
-        int titlesVariety = new HashSet<>(Arrays.asList(titles)).size();
+        HashMap<Integer, Double> discountsMap = new HashMap<>();
+        discountsMap.put(2, 0.05);
+        discountsMap.put(3, 0.10);
+        discountsMap.put(4, 0.20);
+        discountsMap.put(5, 0.25);
 
+        int titlesVariety = new HashSet<>(Arrays.asList(titles)).size();
         if(titlesVariety > 1 && titlesVariety == titles.length) {
-            double discountQuote = (0.05 * Math.pow(2, titlesVariety-2));
-            return (8 * titles.length * (1 - discountQuote));
+            double discountQuote = discountsMap.get(titlesVariety);
+            double basePrice = (8 * titles.length);
+            return basePrice * (1 - discountQuote);
         }
 
         return titles.length * 8;
