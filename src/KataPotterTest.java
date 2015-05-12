@@ -1,6 +1,9 @@
 import org.junit.Ignore;
 import org.junit.Test;
 
+import java.util.Arrays;
+import java.util.HashSet;
+
 import static junit.framework.TestCase.*;
 
 /**
@@ -38,8 +41,16 @@ public class KataPotterTest {
         );
 
         assertBasketCost(8 * 2,
-                "Prisoner of Azkaban",
-                "Prisoner of Azkaban"
+            "Prisoner of Azkaban",
+            "Prisoner of Azkaban"
+        );
+    }
+
+    @Test
+    public void two_different_titles__has_five_percent_discount() {
+        assertBasketCost( ((8*2) * 0.95),
+            "Philosophers Stone",
+            "Chamber of Secrets"
         );
     }
 
@@ -56,6 +67,16 @@ public class KataPotterTest {
     }
 
     private double basketCost(String[] titles) {
-        return (8 * titles.length);
+
+        if(titles.length == 0)
+            return 0;
+
+        double total = titles.length * 8;
+        HashSet<String> set = new HashSet<>(Arrays.asList(titles));
+
+        if(set.size() == 1 || set.size() != titles.length)
+            return total;
+
+        return ((8*2) * 0.95);
     }
 }
