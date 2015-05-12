@@ -1,3 +1,4 @@
+import org.junit.Ignore;
 import org.junit.Test;
 
 import static junit.framework.TestCase.*;
@@ -37,12 +38,22 @@ public class KataPotterTest {
         );
 
         assertBasketCost(8 * 2,
-            "Prisoner of Azkaban",
-            "Prisoner of Azkaban"
+                "Prisoner of Azkaban",
+                "Prisoner of Azkaban"
         );
     }
 
-
+    @Test
+    @Ignore
+    public void final_acceptance_test() {
+        assertBasketCost(51.20,
+            "Philosophers Stone", "Philosophers Stone",
+            "Chamber of Secrets", "Chamber of Secrets",
+            "Prisoner of Azkaban", "Prisoner of Azkaban",
+            "The Goblet of Fire",
+            "Order of the Phoenix"
+        );
+    }
 
     private double basketCost(String[] titles) {
         if(titles.length > 0)
