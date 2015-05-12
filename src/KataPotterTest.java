@@ -41,8 +41,8 @@ public class KataPotterTest {
         );
 
         assertBasketCost(8 * 2,
-            "Prisoner of Azkaban",
-            "Prisoner of Azkaban"
+                "Prisoner of Azkaban",
+                "Prisoner of Azkaban"
         );
     }
 
@@ -51,6 +51,11 @@ public class KataPotterTest {
         assertBasketCost( ((8*2) * 0.95),
             "Philosophers Stone",
             "Chamber of Secrets"
+        );
+
+        assertBasketCost( ((8*2) * 0.95),
+            "Prisoner of Azkaban",
+            "Order of the Phoenix"
         );
     }
 
@@ -68,15 +73,11 @@ public class KataPotterTest {
 
     private double basketCost(String[] titles) {
 
-        if(titles.length == 0)
-            return 0;
+        int titlesVariety = new HashSet<>(Arrays.asList(titles)).size();
+        if(titlesVariety > 1 && titlesVariety == titles.length)
+            return ((8*2) * 0.95);
 
-        double total = titles.length * 8;
-        HashSet<String> set = new HashSet<>(Arrays.asList(titles));
+        return titles.length * 8;
 
-        if(set.size() == 1 || set.size() != titles.length)
-            return total;
-
-        return ((8*2) * 0.95);
     }
 }
