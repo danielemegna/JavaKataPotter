@@ -83,8 +83,10 @@ public class KataPotterTest {
     private double basketCost(String[] titles) {
 
         int titlesVariety = new HashSet<>(Arrays.asList(titles)).size();
-        if(titlesVariety > 1 && titlesVariety == titles.length)
-            return ((8*titles.length) * (1 - (0.05 * (titles.length-1))));
+        if(titlesVariety > 1 && titlesVariety == titles.length) {
+            double discountQuote = (0.05 * (titlesVariety - 1));
+            return (8 * titles.length * (1 - discountQuote));
+        }
 
         return titles.length * 8;
 
