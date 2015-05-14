@@ -17,13 +17,13 @@ public class BasketPriceEstimator {
         }};
 
     public double estimate(BookBasket basket) {
-        if(basket.getBookCount() == 0)
+        if(basket.isEmpty())
             return 0;
 
-        if(basket.getTitlesVariety() == 1)
+        if(basket.hasOnlyOneTitleVariety())
             return (this.BOOKS_PRICE * basket.getBookCount());
 
-        if(basket.getTitlesVariety() == basket.getBookCount()) {
+        if(basket.hasNoMultipleCopies()) {
             return estimateSerieBlock(basket.getTitlesVariety());
         }
 

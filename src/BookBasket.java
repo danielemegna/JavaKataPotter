@@ -31,4 +31,16 @@ public class BookBasket {
 
         this.booksMap.put(title, newValue);
     }
+
+    public boolean isEmpty() {
+        return this.getBookCount() == 0;
+    }
+
+    public boolean hasOnlyOneTitleVariety() {
+        return this.getTitlesVariety() == 1;
+    }
+
+    public boolean hasNoMultipleCopies() {
+        return this.getTitlesVariety() == this.getBookCount();
+    }
 }
