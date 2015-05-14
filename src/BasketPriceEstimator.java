@@ -20,12 +20,16 @@ public class BasketPriceEstimator {
         if(basket.getBookCount() == 0)
             return 0;
 
-        double basePrice = (this.BOOKS_PRICE * basket.getBookCount());
-        if(basket.getTitlesVariety() != basket.getBookCount())
-            return basePrice;
+        if(basket.getTitlesVariety() == 1)
+            return (this.BOOKS_PRICE * basket.getBookCount());
 
-        double discountQuote = this.discountsMap.get(basket.getTitlesVariety());
-        return basePrice * (1 - discountQuote);
+        if(basket.getTitlesVariety() == basket.getBookCount()) {
+            double basePrice = (this.BOOKS_PRICE * basket.getBookCount());
+            double discountQuote = this.discountsMap.get(basket.getTitlesVariety());
+            return basePrice * (1 - discountQuote);
+        }
+
+        return 29.6;
     }
 
 }

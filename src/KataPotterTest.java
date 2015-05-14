@@ -98,6 +98,15 @@ public class KataPotterTest {
     }
 
     @Test
+    public void basket_with_some_duplicates__testcase() {
+        assertBasketCost((((8*3) * 0.90) + 8),
+            "Prisoner of Azkaban", "Prisoner of Azkaban",
+            "The Goblet of Fire",
+            "Order of the Phoenix"
+        );
+    }
+
+    @Test
     @Ignore
     public void final_acceptance_test() {
         assertBasketCost(51.20,
