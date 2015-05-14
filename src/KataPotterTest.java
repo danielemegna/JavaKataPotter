@@ -114,6 +114,28 @@ public class KataPotterTest {
 
     @Test
     @Ignore
+    public void basket_with_sometitle_duplicated__testcase() {
+
+        assertBasketCost((((8*2)*0.95) + ((8*2)*0.95)),
+            "Philosophers Stone", "Philosophers Stone",
+            "Chamber of Secrets", "Chamber of Secrets"
+        );
+
+        assertBasketCost((((8*3)*0.90) + ((8*2)*0.95)),
+            "Philosophers Stone",
+            "Prisoner of Azkaban", "Prisoner of Azkaban",
+            "The Goblet of Fire", "The Goblet of Fire"
+        );
+
+        assertBasketCost((((8*3)*0.90) + ((8*2)*0.95) + 8),
+            "Philosophers Stone",
+            "Prisoner of Azkaban", "Prisoner of Azkaban",
+            "The Goblet of Fire", "The Goblet of Fire", "The Goblet of Fire"
+        );
+    }
+
+    @Test
+    @Ignore
     public void final_acceptance_test() {
         assertBasketCost(51.20,
             "Philosophers Stone", "Philosophers Stone",
